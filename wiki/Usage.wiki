@@ -1,0 +1,24 @@
+#summary How To Use It
+
+= Introduction =
+
+
+
+
+= Details =
+
+Simply, 
+  * download binary distribution 
+{{{
+            jotex<VERSION>.jar
+}}}
+  * open a Terminal or a DOS prompt 
+  * Go to download directory and type:
+{{{
+            java -jar jotex<VERSION>.jar <FILENAME>.odt
+}}}
+When the process will be terminated you'll find
+ {{{
+            <FILENAME>.epub
+}}}
+ in the same original odt's directory
