@@ -21,4 +21,14 @@ When the process will be terminated you'll find
  {{{
             <FILENAME>.epub
 }}}
- in the same original odt's directory
+ in the same original odt's directory.
+
+Options:
+{{{
+
+usage: java -jar jotex<VERSION>.jar [<OPTIONS>] <FILE_NAME>.odt
+ -d                          Enable debug mode
+ -h,--help                   Print Jotex comman line help
+ -s,--max-file-size <SIZE>   Max single xhtml's file size in KB
+
+}}}
