@@ -1,8 +1,6 @@
-
 = Planned improvements =
 
 In plan:
-  * Support for meta informations
-  * Support for differt lists' styles
-  * Support for external css
-  * Support for an external cover page
+  * improve lists coding
+  * improve tables coding
+  * support external css injection
