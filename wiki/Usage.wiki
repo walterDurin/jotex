@@ -27,19 +27,21 @@ Options:
 {{{
 
 usage: java -jar jotex<VERSION>.jar [<OPTIONS>] <FILE_NAME>.odt
- -d                               Enable debug mode
- -e,--fem <adobe|idpf(default)>   Fonts Encriptyon Method. Fonts need, for
-                                  licensing reasons, to be encrypted.
-                                  Two encryption methods are supported
-                                  "adobe" and "idpf" NO PLAIN Fonts
-                                  embeddind is supported by jotex
- -f,--fp <FONTS_PATH>             Fonts Path. A path in which Jotex looks
-                                  for Fonts files that need to be embedded
-                                  (in an encrypted form [see "fem"
-                                  option]) into the epub.
-                                  Without this param NO FONT will be
-                                  included into the epub
- -h,--help                        Print Jotex comman line help
- -s,--max-file-size <SIZE>        Max single xhtml's file size in KB
+ -d                          Enable debug mode
+ -e,--fem <adobe|idpf>       Fonts Encriptyon Method. Used if, for
+                             licensing reasons, fonts need to be
+                             encrypted.
+ -f,--fp <FONTS_PATH>        Fonts Path. A path in which Jotex looks for
+                             Fonts files that need to be embedded (in an
+                             encrypted form [see "fem" option]) into the
+                             epub.
+                             Without this param NO FONT will be included
+                             into the epub
+ -h,--help                   Print Jotex comman line help
+ -o,--output <OUTPUT_FILE>   Output file. If not present, Jotex will
+                             create an epub file in the same original
+                             odt's directory  with the same original odt's
+                             file name
+ -s,--max-file-size <SIZE>   Max single xhtml's file size in KB
 
 }}}
