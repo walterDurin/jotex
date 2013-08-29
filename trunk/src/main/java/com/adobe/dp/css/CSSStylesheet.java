@@ -1,8 +1,12 @@
 package com.adobe.dp.css;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 public class CSSStylesheet {
@@ -43,7 +47,7 @@ public class CSSStylesheet {
 	}
 
 	public void serialize(PrintWriter out) {
-		Iterator list = statements.iterator();
+		Iterator list=purgeCSStatements().iterator();
 		while (list.hasNext()) {
 			Object stmt = list.next();
 			if (stmt instanceof FontFaceRule) {
@@ -64,8 +68,49 @@ public class CSSStylesheet {
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * Get alla Css statements with duplicates 
+	 * @return a list of statements with no duplicates
+	 */
+	private List purgeCSStatements(){
+		Map<String,SelectorRule> unique=new HashMap<String, SelectorRule>();
+		List statementsOk=new ArrayList();
+		
+		for (Iterator iterator =  statements.iterator(); iterator.hasNext();) {
+			Object r = (Object) iterator.next();
+			if (r instanceof SelectorRule) {
+				SelectorRule sr=(SelectorRule) r;
+				SelectorRule srcache=unique.get(sr.properties.toString());
+				if(srcache==null){
+					unique.put(sr.properties.toString(), sr);
+					srcache=sr;
+					continue;
+				}
+				List<Selector> sels=new ArrayList<Selector>();
+				for (int i = 0; i < srcache.selectors.length; i++) {
+					sels.add(srcache.selectors[i]);
+				}
+				for (int i = 0; i < sr.selectors.length; i++) {
+					sels.add(sr.selectors[i]);
+				}
+			
+				srcache.selectors=sels.toArray(new Selector[0]);
+				
+			}else{
+				statementsOk.add(r);	
+			}
+		}
+		statementsOk.addAll(unique.values());
+		
+		return statementsOk;
+	}
+	
 	public Iterator statements() {
 		return statements.iterator();
 	}
+	
+	
+	
+
 }
