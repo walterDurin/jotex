@@ -667,10 +667,10 @@ public class OdtEPUBlisher {
                 } else {
                     rule.set(e.getKey().getName().getLocalName(), new CSSName(e.getValue()));
                 }
-            } else if (e.getKey().getName().getLocalName().equals("text-underline-style")) {
+            } else if (e.getKey().getName().getLocalName().equals("text-underline-style")&&!e.getValue().equals("none")) {
                 SelectorRule rule = getStylesheet().getRuleForSelector(selector, true);
-
                 rule.set("text-decoration", new CSSName("underline"));
+                rule.set(e.getKey().getName().getLocalName(), new CSSName(e.getValue()));
             } else if (e.getKey().getName().getLocalName().equals("text-align")) {
                 SelectorRule rule = getStylesheet().getRuleForSelector(selector, true);
                 String val = e.getValue();
