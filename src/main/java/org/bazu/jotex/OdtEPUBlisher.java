@@ -196,11 +196,9 @@ public class OdtEPUBlisher {
         Utils.processMetadata(getOdt().getMetaDom(), getEpub(), getXpath());
 
 
-        // stylesPropsToCSS( getOdtDocument().getDocumentStyles().get,
-        // className)
-        // System.out.println(getOdtDocument().getDocumentStyles());
-        extractDefaultStyles(getOdt().getDocumentStyles());
 
+         //System.out.println(getOdt().getDocumentStyles());
+        extractDefaultStyles(getOdt().getDocumentStyles());
         if(getCoverPath()!=null&&getCoverPath().trim().length()>0){//a cover will be processed
             
            
@@ -915,21 +913,20 @@ public class OdtEPUBlisher {
                 stylesPropsToCSS(s.getStyleProperties(), "h9", null);
                 stylesPropsToCSS(s.getStyleProperties(), "h10", null);
 
-            }
-            if (s.getAttribute("style:name").startsWith("Heading")) {
+            }else    if (s.getAttribute("style:name").startsWith("Heading")) {
                 String level = s.getAttribute("style:default-outline-level");
                 if (level != null && level.trim().length() > 0) {
                     stylesPropsToCSS(s.getStyleProperties(), "h" + level, null);
                 }
-            }
-            if (s.getAttribute("style:name").startsWith("Standard")) {
+            }else  if (s.getAttribute("style:name").startsWith("Standard")) {
 
                 stylesPropsToCSS(s.getStyleProperties(), "p", null);
 
-            }
-            if (s.getAttribute("style:name").startsWith("Footnote")) {
+            }else  if (s.getAttribute("style:name").startsWith("Footnote")) {
                 stylesPropsToCSS(s.getStyleProperties(), null, "Footnote");
                 stylesPropsToCSS(s.getStyleProperties(), null, "fnDiv");
+            }else if (s.getAttribute("style:name")!=null&&!s.getAttribute("style:name").trim().equals("")) {
+            	  stylesPropsToCSS(s.getStyleProperties(), null, s.getAttribute("style:name"));
             }
             if (isDebugMode()) {
                 System.out.println("Nome: " + s.getAttribute("style:name") + " Classe: "
